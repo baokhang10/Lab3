@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -31,7 +31,8 @@ public class SquareController : MonoBehaviour
 
         Vector3 movement = new Vector3(horizontal, vertical, 0f).normalized;
         transform.Translate(movement * 5f *Time.deltaTime);
-    }
+        
+            }
     public void LoadNextScene()
     {
         int currenSceneIndex = SceneManager.GetActiveScene().buildIndex;
@@ -45,6 +46,13 @@ public class SquareController : MonoBehaviour
             Vector2 firstPosition = new Vector2(-8, 1);
             transform.position = firstPosition;
             
+        }
+        if (collision.gameObject.tag.Equals("Pinwheel"))
+        {
+            Debug.Log("xxxx");
+            Vector2 firstPosition = new Vector2(-8, 1);
+            transform.position = firstPosition;
+
         }
         if (collision.gameObject.name.Equals("Box"))
         {
