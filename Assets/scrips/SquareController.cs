@@ -8,12 +8,15 @@ public class SquareController : MonoBehaviour
 {
     public float timeRemaining = 60;
     public Text countdownText;
-    public Text scoreText;
+    
     private int score = 0;
-    public float moveSpeed = 5f;
+    public float moveSpeed = 3f;
     public GameObject bulletPrefab;
     public float bulletSpeed = 10f;
     private Vector2 shootDirection;
+
+   
+
 
     void Start()
     {
@@ -33,7 +36,7 @@ public class SquareController : MonoBehaviour
     }
     void UpdateScoreText()
     {
-        scoreText.text = "Score: " + score.ToString();
+        
     }
 
     public void IncreaseScore(int amount)
@@ -103,8 +106,8 @@ public class SquareController : MonoBehaviour
         }
         else if (collision.gameObject.tag.Equals("Star"))
         {
-            IncreaseScore(10); 
-            Destroy(collision.gameObject); 
+            ScoreController.Instance.IncreaseScore(10); // Tăng điểm chung
+            Destroy(collision.gameObject); // Hủy đối tượng "Star" 
         }
         if (collision.gameObject.tag.Equals("Pinwheel"))
         {
