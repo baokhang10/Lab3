@@ -144,4 +144,6 @@ public class SquareController : MonoBehaviour
             bulletRb.velocity = shootDirection * bulletSpeed;  // Bắn theo hướng "up" của GameObject
         }
     }
+    
+   
 }

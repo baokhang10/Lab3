@@ -19,12 +19,28 @@ public class BulletController : MonoBehaviour
             Destroy(gameObject); // Viên đạn
 
         }
+        if (collision.gameObject.tag.Equals("Pinwheel"))
+        {
+
+            ScoreController.Instance.IncreaseScore(scoreValue);
+            Destroy(collision.gameObject); // Đối tượng bị bắn
+            Destroy(gameObject); // Viên đạn
+
+        }
+        if (collision.gameObject.tag.Equals("Trap"))
+        {
+
+            ScoreController.Instance.IncreaseScore(scoreValue);
+            Destroy(collision.gameObject); // Đối tượng bị bắn
+            Destroy(gameObject); // Viên đạn
+
+        }
 
 
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("MapEdge") )
+        if (collision.CompareTag("MapEdge") || collision.CompareTag("BoxEdge") )
         {
             Destroy(gameObject);
         }

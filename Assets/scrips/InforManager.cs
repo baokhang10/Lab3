@@ -8,7 +8,7 @@ public class InfoManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public Text info;
-    string name = "DavidBeckBin";
+    string Name = "DavidBeckBin";
     void Start()
     {
 
@@ -17,6 +17,6 @@ public class InfoManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        info.text = "Name:  " + name;
+        info.text = "Name:  " + Name;
     }
 }
