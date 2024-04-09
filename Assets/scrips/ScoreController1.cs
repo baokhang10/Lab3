@@ -19,19 +19,19 @@ public class ScoreController : MonoBehaviour
     }
 
     private int totalScore = 0; // Tổng điểm
-    
 
     public Text scoreText; // Text hiển thị điểm
 
     private void Start()
     {
+        // Khi bắt đầu, cập nhật điểm từ PlayerPrefs
+        totalScore = PlayerPrefs.GetInt("TotalScore", 0);
         UpdateScoreText(); // Cập nhật text điểm khi bắt đầu
     }
 
     private void UpdateScoreText()
     {
-        scoreText.text = "Score: " + totalScore.ToString();             
-        
+        scoreText.text = "Score: " + totalScore.ToString();
     }
 
     // Phương thức tăng điểm
@@ -39,5 +39,26 @@ public class ScoreController : MonoBehaviour
     {
         totalScore += amount;
         UpdateScoreText();
+        SaveScore(); // Lưu điểm sau mỗi lần tăng điểm
+    }
+
+    // Phương thức lưu điểm
+    private void SaveScore()
+    {
+        PlayerPrefs.SetInt("TotalScore", totalScore);
+        PlayerPrefs.Save();
+        Debug.Log("Score saved: " + totalScore);
+    }
+
+    public void ResetScore()
+    {
+        totalScore = 0;
+        PlayerPrefs.DeleteKey("TotalScore");
+        UpdateScoreText();
+        Debug.Log("Score reset");
+    }
+    private void OnApplicationQuit()
+    {
+        ResetScore();
     }
 }

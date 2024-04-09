@@ -8,15 +8,19 @@ public class MenuController : MonoBehaviour
     // Start is called before the first frame update
     public GameObject menuCanvas;
     public GameObject trangPhuc;
+    public PlayerData playerData;
+    public Text Level;
+   
 
-    
 
     void Start()
     {
         HideMenu();
         HideTrangPhuc();
 
-        
+        LoadPlayerData();
+
+
     }
 
     // Update is called once per frame
@@ -51,5 +55,26 @@ public class MenuController : MonoBehaviour
         trangPhuc.SetActive(false);
         Time.timeScale = 1f; // Khôi phục thời gian khi ẩn menu
     }
-   
+    void LoadPlayerData()
+    {
+        // Đọc dữ liệu người chơi từ file lưu trữ
+        if (PlayerPrefs.HasKey("PlayerLevel"))
+        {
+            playerData.playerLevel = PlayerPrefs.GetInt("PlayerLevel");
+           
+            Level.text = "Level:" + (playerData.playerLevel).ToString();
+          
+            //Debug.Log("Player data loaded.");
+
+        }
+        else
+        {
+            //Debug.LogWarning("Player data not found. Starting with default values.");
+            // Gán giá trị mặc định nếu không tìm thấy dữ liệu người chơi
+            playerData.playerLevel = 0;
+       
+        }
+
+    }
+
 }

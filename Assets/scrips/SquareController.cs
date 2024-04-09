@@ -13,6 +13,7 @@ public class SquareController : MonoBehaviour
     public float moveSpeed = 3f;
     public GameObject bulletPrefab;
     public float bulletSpeed = 10f;
+    public PlayerData playerData;
     private Vector2 shootDirection;
 
    
@@ -92,6 +93,10 @@ public class SquareController : MonoBehaviour
             }
     public void LoadNextScene()
     {
+        playerData.playerLevel++;
+        // lưu thông tin playerLevel vào PlayerPrefs
+        PlayerPrefs.SetInt("PlayerLevel", playerData.playerLevel);
+       
         int currenSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currenSceneIndex + 1);
     }
